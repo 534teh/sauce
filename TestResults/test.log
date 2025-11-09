@@ -1,0 +1,18 @@
+2025-11-09 14:35:32,067 [.NET TP Worker] INFO sauce.Base.BaseTest - Starting test setup.
+2025-11-09 14:35:32,067 [.NET TP Worker] INFO sauce.Base.BaseTest - Starting test setup.
+2025-11-09 14:35:32,067 [.NET TP Worker] INFO sauce.Base.BaseTest - Starting test setup.
+2025-11-09 14:35:40,521 [.NET TP Worker] INFO sauce.Base.BaseTest - Test setup complete.
+2025-11-09 14:35:40,522 [.NET TP Worker] INFO sauce.Base.BaseTest - Running UC3 with username: 'standard_user', password: 'secret_sauce'
+2025-11-09 14:35:38,707 [.NET TP Worker] INFO sauce.Base.BaseTest - Test setup complete.
+2025-11-09 14:35:38,708 [.NET TP Worker] INFO sauce.Base.BaseTest - Running UC1 with username: '', password: ''
+2025-11-09 14:35:38,908 [.NET TP Worker] INFO sauce.Base.BaseTest - Test setup complete.
+2025-11-09 14:35:38,911 [.NET TP Worker] INFO sauce.Base.BaseTest - Running UC2 with username: 'standard_user', password: ''
+2025-11-09 14:35:39,995 [.NET TP Worker] INFO sauce.Base.BaseTest - UC3 finished.
+2025-11-09 14:35:40,007 [.NET TP Worker] INFO sauce.Base.BaseTest - Starting test cleanup.
+2025-11-09 14:35:40,241 [.NET TP Worker] INFO sauce.Base.BaseTest - Test cleanup complete.
+2025-11-09 14:35:40,274 [.NET TP Worker] INFO sauce.Base.BaseTest - UC1 finished.
+2025-11-09 14:35:40,275 [.NET TP Worker] INFO sauce.Base.BaseTest - Starting test cleanup.
+2025-11-09 14:35:40,402 [.NET TP Worker] INFO sauce.Base.BaseTest - Test cleanup complete.
+2025-11-09 14:35:40,599 [.NET TP Worker] INFO sauce.Base.BaseTest - UC2 finished.
+2025-11-09 14:35:40,599 [.NET TP Worker] INFO sauce.Base.BaseTest - Starting test cleanup.
+2025-11-09 14:35:40,706 [.NET TP Worker] INFO sauce.Base.BaseTest - Test cleanup complete.

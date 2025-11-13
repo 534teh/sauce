@@ -23,12 +23,7 @@ public class WebDriverCreator
         {
             case "firefox":
                 var firefoxOptions = new FirefoxOptions();
-                firefoxOptions.AddArguments(
-                    "--headless",
-                    "--disable-gpu",
-                    "--width=1920",
-                    "--height=1080"
-                );
+                firefoxOptions.AddArgument("--headless");
 
                 return new FirefoxDriver(firefoxOptions);
 
@@ -37,7 +32,9 @@ public class WebDriverCreator
                 edgeOptions.AddArguments(
                     "--headless",
                     "--disable-gpu",
-                    "--window-size=1920,1080"
+                    "--window-size=1920,1080",
+                    "--no-sandbox",
+                    "--disable-dev-shm-usage"
                 );
 
                 return new EdgeDriver(edgeOptions);

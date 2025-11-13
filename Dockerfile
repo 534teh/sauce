@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS base
 WORKDIR /src
 
-# Install all browsers, dependencies, and utilities in a single layer
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     # Utilities
     wget \
@@ -39,24 +39,21 @@ RUN apt-get update && apt-get install -y \
     libxrender1 \
     libxss1 \
     libxtst6 \
-  # Add Google Chrome repository (secure method)
+  # Add Google Chrome repository
   && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg \
   && echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
-  # Add Microsoft Edge repository (secure method)
+  # Add Microsoft Edge repository
   && wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg \
   && echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge.list \
-  # Update apt list *after* adding all repos
-  && apt-get update
-  
-# Install all browsers
-RUN apt-get install -y \
-    google-chrome-stable \
-    microsoft-edge-stable \
-    firefox-esr \
+  # Update apt list after adding all repos
+  && apt-get update  && \
+  # Install browsers
+  apt-get install -y \
+  google-chrome-stable \
+  microsoft-edge-stable \
+  firefox-esr \
   # Clean up apt cache
   && rm -rf /var/lib/apt/lists/*
-
-# Install webdrivers in separate layers for better caching
 
 # Install geckodriver (for Firefox)
 RUN \
@@ -65,11 +62,8 @@ RUN \
   curl -L -o geckodriver.tar.gz "https://github.com/mozilla/geckodriver/releases/download/${GECKODRIVER_VERSION}/geckodriver-${GECKODRIVER_VERSION}-linux64.tar.gz" && \
   tar -zxf geckodriver.tar.gz -C /usr/local/bin && \
   chmod +x /usr/local/bin/geckodriver && \
-  rm geckodriver.tar.gz
-
-# Install msedgedriver (for Edge)
-RUN \
-  set -e && \
+  rm geckodriver.tar.gz && \
+  # Install msedgedriver (for Edge)
   EDGE_VERSION=$(microsoft-edge-stable --version | cut -d ' ' -f 3) && \
   if [ -z "$EDGE_VERSION" ]; then \
     echo "ERROR: Failed to retrieve microsoft-edge-stable version." >&2; \
@@ -79,17 +73,25 @@ RUN \
   wget -q "https://msedgewebdriverstorage.blob.core.windows.net/edgewebdriver/${EDGE_VERSION}/edgedriver_linux64.zip" && \
   unzip edgedriver_linux64.zip -d /usr/local/bin && \
   chmod +x /usr/local/bin/msedgedriver && \
-  rm edgedriver_linux64.zip
-
-# Install chromedriver (for Chrome)
-RUN \
+  rm edgedriver_linux64.zip && \
+  # Install chromedriver (for Chrome)
   DOWNLOAD_URL=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json" | \
   jq -r '.channels.Stable.downloads.chromedriver[] | select(.platform == "linux64").url') && \
+  \
+  if [ -z "$DOWNLOAD_URL" ]; then \
+    echo "ERROR: Failed to retrieve chromedriver download URL." >&2; \
+    exit 1; \
+  fi && \
+  \
+  echo "Installing chromedriver from: ${DOWNLOAD_URL}" && \
   wget -q "${DOWNLOAD_URL}" -O chromedriver.zip && \
+  \
   unzip -j chromedriver.zip "chromedriver-linux64/chromedriver" -d /usr/local/bin && \
+  \
   chmod +x /usr/local/bin/chromedriver && \
   rm chromedriver.zip
 
+  
 # Copy and restore project file first for caching
 COPY ["sauce/sauce.csproj", "sauce/"]
 RUN dotnet restore "sauce/sauce.csproj"

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sfeh3VAk5A0=",
+  "dgSpecHash": "MnrfLgT8l4g=",
   "success": true,
   "projectFilePath": "/home/df/repo/test_testing/sauce_proj/sauce/sauce.csproj",
   "expectedPackageFiles": [
@@ -23,7 +23,6 @@
     "/home/df/.nuget/packages/mstest.testframework/3.6.4/mstest.testframework.3.6.4.nupkg.sha512",
     "/home/df/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
     "/home/df/.nuget/packages/selenium.webdriver/4.15.0/selenium.webdriver.4.15.0.nupkg.sha512",
-    "/home/df/.nuget/packages/selenium.webdriver.chromedriver/119.0.6045.10500/selenium.webdriver.chromedriver.119.0.6045.10500.nupkg.sha512",
     "/home/df/.nuget/packages/system.configuration.configurationmanager/4.5.0/system.configuration.configurationmanager.4.5.0.nupkg.sha512",
     "/home/df/.nuget/packages/system.diagnostics.diagnosticsource/5.0.0/system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
     "/home/df/.nuget/packages/system.drawing.common/7.0.0/system.drawing.common.7.0.0.nupkg.sha512",

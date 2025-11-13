@@ -1,25 +1,44 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
+using log4net;
 
-namespace sauce.Pages
+namespace sauce.Pages;
+
+public class InventoryPage(IWebDriver driver)
 {
-    public class InventoryPage
+    public const string Url = "https://www.saucedemo.com/inventory.html";
+    private readonly IWebDriver _driver = driver;
+    private static readonly ILog _log = LogManager.GetLogger(typeof(LoginPage));
+
+    private void WaitForPageToLoad()
     {
-        private readonly IWebDriver _driver;
-        private readonly WebDriverWait _wait;
+        _log.Debug("Waiting for the Login page to fully load...");
 
-        public InventoryPage(IWebDriver driver)
-        {
-            _driver = driver;
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-        }
+        var titleWait = new WebDriverWait(this._driver, TimeSpan.FromSeconds(2));
 
-        private IWebElement Title => _wait.Until(d => d.FindElement(By.ClassName("title")));
+        _ = titleWait.Until(d => d.FindElement(By.XPath("//div[@class='app_logo']")));
+        _log.Debug("Login page elements are visible.");
+    }
 
-        public string GetTitle()
-        {
-            return Title.Text;
-        }
+    public InventoryPage Open()
+    {
+        _log.Info($"Navigating to URL: {Url}");
+
+        this._driver.Navigate().GoToUrl(Url);
+        this.WaitForPageToLoad();
+
+        return this;
+    }
+
+    public string GetTitle()
+    {
+        _log.Debug("Retrieving Inventory page title.");
+
+        var title = this._driver.FindElement(By.XPath("//div[@class='app_logo']"));
+
+        _log.Debug($"Retrieved title: '{title.Text}'");
+
+        return title.Text;
     }
 }
+

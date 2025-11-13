@@ -1,24 +1,26 @@
 #!/bin/bash
-# Builds the test image.
-# Assumes Dockerfile is in the current directory.
 
 set -e
 
 IMAGE_NAME="sauce-tests"
-DEBUG_MODE="false"
+DOCKER_BUILD_TARGET="release"
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
-        --debug) DEBUG_MODE="true";;
         --image-name) IMAGE_NAME="$2"; shift;;
+        --debug) DOCKER_BUILD_TARGET="debug";;
         *) echo "Unknown parameter passed: $1"; exit 1;;
     esac
     shift
 done
 
-echo "Building image ${IMAGE_NAME} with DEBUG_MODE=${DEBUG_MODE}..."
+if [[ "${DOCKER_BUILD_TARGET}" == "debug" ]]; then
+    IMAGE_NAME="${IMAGE_NAME}-debug"
+fi
+
+echo "Building image ${IMAGE_NAME}..."
 docker build \
-    --build-arg DEBUG_MODE=${DEBUG_MODE} \
+    --target ${DOCKER_BUILD_TARGET} \
     -t ${IMAGE_NAME} \
     -f ./Dockerfile .
 

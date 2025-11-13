@@ -56,10 +56,6 @@
               "target": "Package",
               "version": "[4.15.0, )"
             },
-            "Selenium.WebDriver.ChromeDriver": {
-              "target": "Package",
-              "version": "[119.0.6045.10500, )"
-            },
             "log4net": {
               "target": "Package",
               "version": "[2.0.15, )"

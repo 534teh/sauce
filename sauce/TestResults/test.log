@@ -1,0 +1,117 @@
+2025-11-13 08:53:06,836 [.NET TP Worker] INFO sauce.Tests.SauceTests - Running UC2 with username: 'Username1', password: 'Password1'
+2025-11-13 08:53:06,851 [.NET TP Worker] INFO sauce.Tests.SauceTests - Running UC3: Valid Login Test. Expected Title: 'Swag Labs'
+2025-11-13 08:53:06,871 [.NET TP Worker] INFO sauce.Pages.LoginPage - Navigating to URL: https://www.saucedemo.com/
+2025-11-13 08:53:06,856 [.NET TP Worker] INFO sauce.Pages.LoginPage - Navigating to URL: https://www.saucedemo.com/
+2025-11-13 08:53:07,009 [.NET TP Worker] INFO sauce.Tests.SauceTests - Running UC1: Empty Credentials Test. Expected Error: 'Epic sadface: Username is required'
+2025-11-13 08:53:07,012 [.NET TP Worker] INFO sauce.Pages.LoginPage - Navigating to URL: https://www.saucedemo.com/
+2025-11-13 08:53:07,833 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Waiting for the Login page to fully load...
+2025-11-13 08:53:07,906 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Login page elements are visible.
+2025-11-13 08:53:07,906 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering username
+2025-11-13 08:53:07,933 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Waiting for the Login page to fully load...
+2025-11-13 08:53:08,076 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Login page elements are visible.
+2025-11-13 08:53:08,078 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering username
+2025-11-13 08:53:08,133 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Waiting for the Login page to fully load...
+2025-11-13 08:53:08,275 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Login page elements are visible.
+2025-11-13 08:53:08,277 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering username
+2025-11-13 08:53:08,508 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering password
+2025-11-13 08:53:08,549 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering password
+2025-11-13 08:53:08,744 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering password
+2025-11-13 08:53:08,843 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing Password field. Value before
+2025-11-13 08:53:08,847 [.NET TP Worker] INFO sauce.Pages.LoginPage - Clicking the Login button.
+2025-11-13 08:53:08,926 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing element. Value before clear: 'Password1'
+2025-11-13 08:53:08,979 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing Username field. Value before clear: 'Username1'
+2025-11-13 08:53:09,032 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing element. Value before clear: 'Username1'
+2025-11-13 08:53:09,065 [.NET TP Worker] INFO sauce.Pages.LoginPage - Clicking the Login button.
+2025-11-13 08:53:09,297 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieving Inventory page title.
+2025-11-13 08:53:09,379 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieved title: 'Swag Labs'
+2025-11-13 08:53:09,434 [.NET TP Worker] INFO sauce.Tests.SauceTests - Assertion passed: Inventory page title is 'Swag Labs'.
+2025-11-13 08:53:09,438 [.NET TP Worker] INFO sauce.Tests.SauceTests - UC3 finished.
+2025-11-13 08:53:09,440 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing Password field. Value before
+2025-11-13 08:53:09,456 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieving error message text.
+2025-11-13 08:53:09,535 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing element. Value before clear: 'Password1'
+2025-11-13 08:53:09,558 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieved error message: 'Epic sadface: Password is required'
+2025-11-13 08:53:09,559 [.NET TP Worker] INFO sauce.Tests.SauceTests - Assertion passed: Error message is: 'Epic sadface: Password is required'.
+2025-11-13 08:53:09,564 [.NET TP Worker] INFO sauce.Tests.SauceTests - UC2 finished.
+2025-11-13 08:53:09,799 [.NET TP Worker] INFO sauce.Pages.LoginPage - Clicking the Login button.
+2025-11-13 08:53:09,991 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieving error message text.
+2025-11-13 08:53:10,048 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieved error message: 'Epic sadface: Username is required'
+2025-11-13 08:53:10,049 [.NET TP Worker] INFO sauce.Tests.SauceTests - Assertion passed: Correct error message displayed.
+2025-11-13 08:53:10,049 [.NET TP Worker] INFO sauce.Tests.SauceTests - UC1 finished.
+2025-11-13 08:54:21,690 [.NET TP Worker] INFO sauce.Tests.SauceTests - Running UC3: Valid Login Test. Expected Title: 'Swag Labs'
+2025-11-13 08:54:21,701 [.NET TP Worker] INFO sauce.Pages.LoginPage - Navigating to URL: https://www.saucedemo.com/
+2025-11-13 08:54:21,712 [.NET TP Worker] INFO sauce.Tests.SauceTests - Running UC2 with username: 'Username1', password: 'Password1'
+2025-11-13 08:54:21,714 [.NET TP Worker] INFO sauce.Pages.LoginPage - Navigating to URL: https://www.saucedemo.com/
+2025-11-13 08:54:22,050 [.NET TP Worker] INFO sauce.Tests.SauceTests - Running UC1: Empty Credentials Test. Expected Error: 'Epic sadface: Username is required'
+2025-11-13 08:54:22,053 [.NET TP Worker] INFO sauce.Pages.LoginPage - Navigating to URL: https://www.saucedemo.com/
+2025-11-13 08:54:24,106 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Waiting for the Login page to fully load...
+2025-11-13 08:54:24,136 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Waiting for the Login page to fully load...
+2025-11-13 08:54:20,827 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Waiting for the Login page to fully load...
+2025-11-13 08:54:20,843 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Login page elements are visible.
+2025-11-13 08:54:20,846 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering username
+2025-11-13 08:54:20,887 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Login page elements are visible.
+2025-11-13 08:54:20,889 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering username
+2025-11-13 08:54:20,978 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Login page elements are visible.
+2025-11-13 08:54:20,980 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering username
+2025-11-13 08:54:21,312 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering password
+2025-11-13 08:54:21,340 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering password
+2025-11-13 08:54:21,463 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering password
+2025-11-13 08:54:21,680 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing Password field. Value before
+2025-11-13 08:54:21,703 [.NET TP Worker] INFO sauce.Pages.LoginPage - Clicking the Login button.
+2025-11-13 08:54:21,769 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing element. Value before clear: 'Password1'
+2025-11-13 08:54:21,828 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing Username field. Value before clear: 'Username1'
+2025-11-13 08:54:21,874 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing element. Value before clear: 'Username1'
+2025-11-13 08:54:21,926 [.NET TP Worker] INFO sauce.Pages.LoginPage - Clicking the Login button.
+2025-11-13 08:54:22,119 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieving Inventory page title.
+2025-11-13 08:54:22,240 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing Password field. Value before
+2025-11-13 08:54:22,241 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieved title: 'Swag Labs'
+2025-11-13 08:54:22,318 [.NET TP Worker] INFO sauce.Tests.SauceTests - Assertion passed: Inventory page title is 'Swag Labs'.
+2025-11-13 08:54:22,326 [.NET TP Worker] INFO sauce.Tests.SauceTests - UC3 finished.
+2025-11-13 08:54:22,342 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieving error message text.
+2025-11-13 08:54:22,391 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing element. Value before clear: 'Password1'
+2025-11-13 08:54:22,485 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieved error message: 'Epic sadface: Password is required'
+2025-11-13 08:54:22,487 [.NET TP Worker] INFO sauce.Tests.SauceTests - Assertion passed: Error message is: 'Epic sadface: Password is required'.
+2025-11-13 08:54:22,487 [.NET TP Worker] INFO sauce.Tests.SauceTests - UC2 finished.
+2025-11-13 08:54:22,707 [.NET TP Worker] INFO sauce.Pages.LoginPage - Clicking the Login button.
+2025-11-13 08:54:22,918 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieving error message text.
+2025-11-13 08:54:22,970 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieved error message: 'Epic sadface: Username is required'
+2025-11-13 08:54:22,971 [.NET TP Worker] INFO sauce.Tests.SauceTests - Assertion passed: Correct error message displayed.
+2025-11-13 08:54:22,971 [.NET TP Worker] INFO sauce.Tests.SauceTests - UC1 finished.
+2025-11-13 08:55:16,495 [.NET TP Worker] INFO sauce.Tests.SauceTests - Running UC2 with username: 'Username1', password: 'Password1'
+2025-11-13 08:55:16,540 [.NET TP Worker] INFO sauce.Pages.LoginPage - Navigating to URL: https://www.saucedemo.com/
+2025-11-13 08:55:17,933 [.NET TP Worker] INFO sauce.Tests.SauceTests - Running UC3: Valid Login Test. Expected Title: 'Swag Labs'
+2025-11-13 08:55:17,935 [.NET TP Worker] INFO sauce.Pages.LoginPage - Navigating to URL: https://www.saucedemo.com/
+2025-11-13 08:55:18,061 [.NET TP Worker] INFO sauce.Tests.SauceTests - Running UC1: Empty Credentials Test. Expected Error: 'Epic sadface: Username is required'
+2025-11-13 08:55:18,066 [.NET TP Worker] INFO sauce.Pages.LoginPage - Navigating to URL: https://www.saucedemo.com/
+2025-11-13 08:55:18,187 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Waiting for the Login page to fully load...
+2025-11-13 08:55:18,481 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Login page elements are visible.
+2025-11-13 08:55:18,483 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering username
+2025-11-13 08:55:19,013 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering password
+2025-11-13 08:55:19,212 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Waiting for the Login page to fully load...
+2025-11-13 08:55:19,284 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Waiting for the Login page to fully load...
+2025-11-13 08:55:19,316 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Login page elements are visible.
+2025-11-13 08:55:19,326 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering username
+2025-11-13 08:55:19,400 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing Password field. Value before
+2025-11-13 08:55:19,437 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Login page elements are visible.
+2025-11-13 08:55:19,437 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering username
+2025-11-13 08:55:19,613 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing element. Value before clear: 'Password1'
+2025-11-13 08:55:19,760 [.NET TP Worker] INFO sauce.Pages.LoginPage - Clicking the Login button.
+2025-11-13 08:55:19,799 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering password
+2025-11-13 08:55:19,897 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Entering password
+2025-11-13 08:55:20,076 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieving error message text.
+2025-11-13 08:55:20,199 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieved error message: 'Epic sadface: Password is required'
+2025-11-13 08:55:20,201 [.NET TP Worker] INFO sauce.Tests.SauceTests - Assertion passed: Error message is: 'Epic sadface: Password is required'.
+2025-11-13 08:55:20,201 [.NET TP Worker] INFO sauce.Tests.SauceTests - UC2 finished.
+2025-11-13 08:55:20,285 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing Username field. Value before clear: 'Username1'
+2025-11-13 08:55:20,365 [.NET TP Worker] INFO sauce.Pages.LoginPage - Clicking the Login button.
+2025-11-13 08:55:20,393 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing element. Value before clear: 'Username1'
+2025-11-13 08:55:20,624 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing Password field. Value before
+2025-11-13 08:55:20,676 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Clearing element. Value before clear: 'Password1'
+2025-11-13 08:55:20,754 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieving Inventory page title.
+2025-11-13 08:55:20,862 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieved title: 'Swag Labs'
+2025-11-13 08:55:20,901 [.NET TP Worker] INFO sauce.Tests.SauceTests - Assertion passed: Inventory page title is 'Swag Labs'.
+2025-11-13 08:55:20,902 [.NET TP Worker] INFO sauce.Tests.SauceTests - UC3 finished.
+2025-11-13 08:55:20,937 [.NET TP Worker] INFO sauce.Pages.LoginPage - Clicking the Login button.
+2025-11-13 08:55:21,174 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieving error message text.
+2025-11-13 08:55:21,231 [.NET TP Worker] DEBUG sauce.Pages.LoginPage - Retrieved error message: 'Epic sadface: Username is required'
+2025-11-13 08:55:21,232 [.NET TP Worker] INFO sauce.Tests.SauceTests - Assertion passed: Correct error message displayed.
+2025-11-13 08:55:21,232 [.NET TP Worker] INFO sauce.Tests.SauceTests - UC1 finished.

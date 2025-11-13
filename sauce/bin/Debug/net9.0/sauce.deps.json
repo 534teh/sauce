@@ -11,7 +11,6 @@
           "MSTest": "3.6.4",
           "Microsoft.NET.Test.Sdk": "17.12.0",
           "Selenium.WebDriver": "4.15.0",
-          "Selenium.WebDriver.ChromeDriver": "119.0.6045.10500",
           "log4net": "2.0.15",
           "Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions": "14.0.0.0"
         },
@@ -623,7 +622,6 @@
           }
         }
       },
-      "Selenium.WebDriver.ChromeDriver/119.0.6045.10500": {},
       "System.Configuration.ConfigurationManager/4.5.0": {
         "dependencies": {
           "System.Security.Cryptography.ProtectedData": "4.5.0",
@@ -843,13 +841,6 @@
       "sha512": "sha512-/uMlgsPdsmAAwOADxA4lzz777Xgbhm/SjmvizBpiRDyZtnAxDZ0uON5bpTN+De9F81xB/1z/S8jKN1P7ebYssw==",
       "path": "selenium.webdriver/4.15.0",
       "hashPath": "selenium.webdriver.4.15.0.nupkg.sha512"
-    },
-    "Selenium.WebDriver.ChromeDriver/119.0.6045.10500": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-HwYe60H6KFQJLUx9A8QLJiLoRkXbHnHrw46uKilue3BRxDPX6DAa5W8jWUEy9rAFOn7alKBcyWBWUJDDGeB70Q==",
-      "path": "selenium.webdriver.chromedriver/119.0.6045.10500",
-      "hashPath": "selenium.webdriver.chromedriver.119.0.6045.10500.nupkg.sha512"
     },
     "System.Configuration.ConfigurationManager/4.5.0": {
       "type": "package",

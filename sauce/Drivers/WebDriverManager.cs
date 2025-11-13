@@ -2,48 +2,62 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Edge;
-using System;
-using System.Threading;
 
-namespace sauce.Drivers
+namespace sauce.Drivers;
+
+public class WebDriverManager
 {
-    public class WebDriverManager
+    private static readonly ThreadLocal<IWebDriver?> _driver = new(() =>
     {
-        private static readonly ThreadLocal<IWebDriver?> _driver = new ThreadLocal<IWebDriver?>(() =>
+        var browser = Environment.GetEnvironmentVariable("BROWSER")?.ToLower() ?? "chrome";
+        switch (browser)
         {
-            var browser = Environment.GetEnvironmentVariable("BROWSER")?.ToLower() ?? "chrome";
-            switch (browser)
-            {
-                case "firefox":
-                    var firefoxOptions = new FirefoxOptions();
-                    firefoxOptions.AddArgument("--headless");
-                    return new FirefoxDriver(firefoxOptions);
-                case "edge":
-                    var edgeOptions = new EdgeOptions();
-                    edgeOptions.AddArgument("--headless");
-                    return new EdgeDriver(edgeOptions);
-                case "chrome":
-                default:
-                    var chromeOptions = new ChromeOptions();
-                    chromeOptions.AddArgument("--headless");
-                    chromeOptions.AddArgument("--no-sandbox"); // Required for running as root in Docker
-                    chromeOptions.AddArgument("--disable-gpu"); // Often recommended for headless
-                    chromeOptions.AddArgument("--disable-dev-shm-usage"); // Prevent out-of-memory errors
-                    return new ChromeDriver(chromeOptions);
-            }
-        });
+            case "firefox":
+                var firefoxOptions = new FirefoxOptions();
+                firefoxOptions.AddArguments(
+                    "--headless",
+                    "--disable-gpu",
+                    "--width=1920",
+                    "--height=1080"
+                );
 
-        private WebDriverManager() { }
+                return new FirefoxDriver(firefoxOptions);
 
-        public static IWebDriver Driver => _driver.Value!;
+            case "edge":
+                var edgeOptions = new EdgeOptions();
+                edgeOptions.AddArguments(
+                    "--headless",
+                    "--disable-gpu",
+                    "--window-size=1920,1080"
+                );
 
-        public static void QuitDriver()
+                return new EdgeDriver(edgeOptions);
+
+            case "chrome":
+            default:
+                var chromeOptions = new ChromeOptions();
+                chromeOptions.AddArguments(
+                    "--headless",
+                    "--no-sandbox",
+                    "--disable-gpu",
+                    "--disable-dev-shm-usage",
+                    "window-size=1920,1080"
+                );
+
+                var service = ChromeDriverService.CreateDefaultService();
+                return new ChromeDriver(service, chromeOptions);
+        }
+    });
+
+    private WebDriverManager() { }
+
+    public static IWebDriver Driver => _driver.Value!;
+
+    public static void QuitDriver()
+    {
+        if (_driver.IsValueCreated && _driver.Value != null)
         {
-            if (_driver.IsValueCreated && _driver.Value != null)
-            {
-                _driver.Value.Quit();
-                _driver.Value = null;
-            }
+            _driver.Value.Quit();
         }
     }
 }

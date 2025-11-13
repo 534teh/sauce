@@ -1,37 +1,41 @@
 #!/bin/bash
-# Runs the test image.
-# Pass --debug to run in debug mode.
+# This script is for running the Docker container.
+# To build the container, run build.sh first.
 
 set -e
 
 IMAGE_NAME="sauce-tests"
-DEBUG_MODE="false"
-DOCKER_RUN_OPTS="--rm"
 BROWSER="chrome"
+DEBUG_MODE=false
 
 while [[ "$#" -gt 0 ]]; do
     case $1 in
-        --debug) DEBUG_MODE="true";;
         --image-name) IMAGE_NAME="$2"; shift;;
         --browser) BROWSER="$2"; shift;;
-        *) echo "Unknown parameter passed: $1"; exit 1;;
+        --debug) DEBUG_MODE=true;;
+        *) echo "Unknown parameter passed: "; exit 1;;
     esac
     shift
 done
 
-# Build the image if it doesn't exist
-if [[ "$(docker images -q ${IMAGE_NAME} 2> /dev/null)" == "" ]]; then
-  echo "Image ${IMAGE_NAME} not found. Building..."
-  ./build.sh --image-name ${IMAGE_NAME} --debug=${DEBUG_MODE}
-fi
-
-if [ "$DEBUG_MODE" = "true" ]; then
-    echo "Running ${IMAGE_NAME} in DEBUG mode."
-    echo "Attach your debugger to port 4026..."
-    DOCKER_RUN_OPTS="${DOCKER_RUN_OPTS} -e VSTEST_HOST_DEBUG=true -p 4026:4026"
+if [ "$DEBUG_MODE" = true ]; then
+    IMAGE_NAME="${IMAGE_NAME}-debug"
+    echo "Running ${IMAGE_NAME} in debug mode..."
+    docker run \
+        --rm \
+        -d \
+        --name sauce-debug \
+        -p 10000:10000 \
+        -v $(pwd)/sauce:/src/sauce \
+        ${IMAGE_NAME}
 else
     echo "Running ${IMAGE_NAME} in normal mode..."
+
+    DOCKER_RUN_OPTS="-it --rm -e HOST_UID=$(id -u) -e HOST_GID=$(id -g) -e HOME=/tmp -e BROWSER=${BROWSER} -v $(pwd)/sauce/TestResults:/src/sauce/TestResults"
+
+    # Override the entrypoint to run our command
+    docker run \
+        ${DOCKER_RUN_OPTS} \
+        ${IMAGE_NAME}
 fi
 
-DOCKER_RUN_OPTS="${DOCKER_RUN_OPTS} -e BROWSER=${BROWSER} -v $(pwd)/sauce/TestResults:/src/sauce/TestResults"
-docker run ${DOCKER_RUN_OPTS} ${IMAGE_NAME}

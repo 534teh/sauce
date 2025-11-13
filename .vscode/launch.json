@@ -2,27 +2,32 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Containers: Debug Tests",
+            "name": "Debug Sauce Tests",
             "type": "coreclr",
             "request": "attach",
-            "preLaunchTask": "docker-run: debug",
-            "processId": 0, // Attach to the first dotnet process that is waiting
+            "processId": "${input:processId}",
             "pipeTransport": {
                 "pipeCwd": "${workspaceFolder}",
                 "pipeProgram": "docker",
                 "pipeArgs": [
                     "exec",
                     "-i",
-                    "sauce-test-debug",
-                    "sh",
-                    "-c"
+                    "sauce-debug"
                 ],
                 "debuggerPath": "/vsdbg/vsdbg",
                 "quoteArgs": false
             },
             "sourceFileMap": {
-                "/src": "${workspaceFolder}"
-            }
+                "/src/sauce": "${workspaceFolder}/sauce"
+            },
+            "justMyCode": true
+        }
+    ],
+    "inputs": [
+        {
+            "id": "processId",
+            "type": "promptString",
+            "description": "Enter the process ID from the test output to attach the debugger."
         }
     ]
 }

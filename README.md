@@ -1,6 +1,6 @@
 # Task Description
 
-**Launch URL:** https://www.saucedemo.com/
+**Launch URL:** <https://www.saucedemo.com/>
 
 **UC-1 Test Login form with empty credentials:**
 
@@ -30,10 +30,19 @@
 * Use Data Provider to parametrize tests.
 * Make sure that all tasks are supported by these 3 conditions: UC-1; UC-2; UC-3.
 
-**Tooling:**
+**To perform the task use the various of additional options:**
 
 * **Test Automation tool:** Selenium WebDriver
+* **Browsers:** 1) Firefox; 2) Edge
+* **Locators:** CSS
 * **Test Runner:** MSTest
-* **[Optional] Patterns:** 1) Factory; 2) Builder; 3) Decorator
+* **Assertions:** FluentAssertions
+* **[Optional] Patterns:** 1) Singleton 2) Adapter 3) Strategy
+* **[Optional] Test automation approach:** BDD
+* **[Optional] Loggers:** Serilog
+
+**Criteria for successful completion:**
+
+* **[Optional] Patterns:** 1) Factory 2) Builder 3) Decorator
 * **[Optional] Test automation approach:** BDD
 * **[Optional] Loggers:** Log4Net

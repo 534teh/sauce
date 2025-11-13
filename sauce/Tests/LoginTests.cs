@@ -11,7 +11,7 @@ namespace sauce.Tests;
 [TestClass]
 public class SauceTests
 {
-    protected IWebDriver Driver = WebDriverManager.Driver;
+    protected IWebDriver Driver = null!;
     protected readonly ILog log = LogManager.GetLogger(typeof(SauceTests));
 
     [AssemblyInitialize]
@@ -24,14 +24,24 @@ public class SauceTests
         context.WriteLine("log4net configuration loaded successfully.");
     }
 
+    [TestInitialize]
+    public void Setup()
+    {
+        this.Driver = WebDriverCreator.Create();
+        this.log.Debug("New WebDriver instance created.");
+    }
+
     [TestCleanup]
     public void Cleanup()
     {
-        WebDriverManager.QuitDriver();
+        this.Driver?.Quit();
+        this.Driver?.Dispose();
+        this.log.Debug("WebDriver instance quit.");
     }
 
     [DataTestMethod]
     [DataRow("Username1", "Password1", "Epic sadface: Username is required")]
+    [DataRow("", "", "Epic sadface: Username is required")]
     public void UC1_EmptyCredentialsTest(string username, string password, string expectedError)
     {
         this.log.Info($"Running UC1: Empty Credentials Test. Expected Error: '{expectedError}'");
@@ -41,61 +51,50 @@ public class SauceTests
         loginPage.EnterUsername(username);
         loginPage.EnterPassword(password);
 
+        // We are entering the credentials and then clearing them to test the 'clear' methods
         loginPage.ClearUsername();
         loginPage.ClearPassword();
-
         loginPage.ClickLogin();
 
         var actualError = loginPage.GetErrorMessage();
-        try
-        {
-            Assert.AreEqual(expectedError, actualError);
-            this.log.Info("Assertion passed: Correct error message displayed.");
-        }
-        catch (AssertFailedException ex)
-        {
-            this.log.Error($"UC1 failed. Expected: '{expectedError}', Actual: '{actualError}'", ex);
-            throw;
-        }
+
+        Assert.AreEqual(expectedError, actualError);
 
         this.log.Info("UC1 finished.");
     }
 
     [DataTestMethod]
     [DataRow("Username1", "Password1", "Epic sadface: Password is required")]
+    [DataRow("Username1", "", "Epic sadface: Password is required")]
     public void UC2_EmptyPasswordTest(string username, string password, string expectedError)
     {
-        this.log.Info($"Running UC2 with username: '{username}', password: '{password}'");
+        this.log.Info($"Running UC2: Empty Password Test. Username: '{username}', password: '{password}'");
 
         var loginPage = new LoginPage(this.Driver).Open();
 
         loginPage.EnterUsername(username);
         loginPage.EnterPassword(password);
-
+        // We are entering the password and then clearing it to test the 'ClearPassword' method
         loginPage.ClearPassword();
-
         loginPage.ClickLogin();
 
         var actualError = loginPage.GetErrorMessage();
-        try
-        {
-            Assert.AreEqual(expectedError, actualError);
-            this.log.Info($"Assertion passed: Error message is: '{actualError}'.");
-        }
-        catch (AssertFailedException ex)
-        {
-            this.log.Error($"UC2 failed. Expected: '{expectedError}', Actual: '{actualError}'", ex);
-            throw;
-        }
+
+        Assert.AreEqual(expectedError, actualError);
 
         this.log.Info("UC2 finished.");
     }
 
     [DataTestMethod]
     [DataRow("standard_user", "secret_sauce", "Swag Labs")]
+    [DataRow("problem_user", "secret_sauce", "Swag Labs")]
+    [DataRow("performance_glitch_user", "secret_sauce", "Swag Labs")]
+    [DataRow("error_user", "secret_sauce", "Swag Labs")]
+    [DataRow("visual_user", "secret_sauce", "Swag Labs")]
     public void UC3_ValidCredentialsTest(string username, string password, string expectedTitle)
     {
-        this.log.Info($"Running UC3: Valid Login Test. Expected Title: '{expectedTitle}'");
+        this.log.Info($"Running UC3: Valid Credentials Test. Username: '{username}'" +
+                      $" password: '{password}', expected title: '{expectedTitle}'");
 
         var loginPage = new LoginPage(this.Driver).Open();
 
@@ -103,20 +102,11 @@ public class SauceTests
         loginPage.EnterPassword(password);
         loginPage.ClickLogin();
 
-        var inventoryPage = new InventoryPage(this.Driver); // No need to call Open(), already redirected after login
+        var inventoryPage = new InventoryPage(this.Driver);
 
         var actualTitle = inventoryPage.GetTitle();
-        try
-        {
-            Assert.AreEqual(expectedTitle, actualTitle);
 
-            this.log.Info($"Assertion passed: Inventory page title is '{actualTitle}'.");
-        }
-        catch (AssertFailedException ex)
-        {
-            this.log.Error($"UC3 failed. Expected title: '{expectedTitle}', Actual title: '{actualTitle}'", ex);
-            throw;
-        }
+        Assert.AreEqual(expectedTitle, actualTitle);
 
         this.log.Info("UC3 finished.");
     }

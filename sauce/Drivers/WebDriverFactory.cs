@@ -25,8 +25,7 @@ public static class WebDriverFactory
     /// <summary>
     /// Gets the WebDriver instance for the current thread.
     /// </summary>
-    /// <param name="browserSettings"></param>
-    /// <returns></returns>
+    /// <returns>IWebDriver instance.</returns>
     public static IWebDriver GetDriver(BrowserSettings browserSettings)
     {
         if (_threadLocalDriver.Value == null)
@@ -42,18 +41,28 @@ public static class WebDriverFactory
     }
 
     /// <summary>
+    /// Quits and disposes the WebDriver instance for the current thread.
+    /// </summary>
+    public static void QuitCurrentDriver()
+    {
+        var driver = _threadLocalDriver.Value;
+        if (driver != null)
+        {
+            driver.Quit();
+            driver.Dispose();
+            _threadLocalDriver.Value = null!;
+        }
+    }
+
+    /// <summary>
     /// Closes and disposes all WebDriver instances created by the factory.
     /// </summary>
     public static void CloseAllDrivers()
     {
         foreach (var driver in _allDrivers)
         {
-            try
-            {
-                driver.Quit();
-                driver.Dispose();
-            }
-            catch (WebDriverException) { /* Ignore during cleanup */ }
+            driver.Quit();
+            driver.Dispose();
         }
     }
 

@@ -1,6 +1,5 @@
 using OpenQA.Selenium;
 using sauce.Config;
-using OpenQA.Selenium.Support.UI;
 
 namespace sauce.Pages;
 
@@ -11,7 +10,12 @@ namespace sauce.Pages;
 public class InventoryPage(IWebDriver driver, IConfigurationService configService)
     : BasePage(driver, configService.GetFullUrlPage(UrlKey))
 {
+    /// <summary>
+    /// The URL key for the Inventory page.
+    /// </summary>
     private const string UrlKey = "InventoryPage";
+
+    private IWebElement titleElement => this.Driver.FindElement(By.XPath("//div[@class='app_logo']"));
 
     /// <summary>
     /// Gets the title of the Inventory page.
@@ -19,15 +23,6 @@ public class InventoryPage(IWebDriver driver, IConfigurationService configServic
     /// <returns>The title text.</returns>
     public string GetTitle()
     {
-        this.Log.Debug("Waiting for Inventory page title to appear...");
-
-        // 2. Create an Explicit Wait
-        var wait = new WebDriverWait(this.Driver, TimeSpan.FromSeconds(10));
-
-        // 3. Wait until the element exists in the DOM and return it
-        var titleElement = wait.Until(d => d.FindElement(By.XPath("//div[@class='app_logo']")));
-
-        this.Log.Debug($"Retrieved title: '{titleElement.Text}'");
-        return titleElement.Text;
+        return this.titleElement.Text;
     }
 }

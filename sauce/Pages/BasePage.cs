@@ -4,7 +4,7 @@ using log4net;
 namespace sauce.Pages;
 
 /// <summary>
-/// Page object representing the Inventory Page.
+/// Base class for all page objects.
 /// </summary>
 /// <param name="driver">The WebDriver instance.</param>
 public abstract class BasePage
@@ -47,9 +47,8 @@ public abstract class BasePage
     /// <summary>
     /// Clears the given IWebElement input field.
     /// </summary>
-    protected void ClearElement(IWebElement element)
+    protected static void ClearElement(IWebElement element)
     {
-        this.Log.Debug($"Clearing element. Value before clear: '{element.GetAttribute("value")}'");
         element.SendKeys(Keys.Control + "a");
         element.SendKeys(Keys.Delete);
     }

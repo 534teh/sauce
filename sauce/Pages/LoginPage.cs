@@ -10,6 +10,9 @@ namespace sauce.Pages;
 public class LoginPage(IWebDriver driver, IConfigurationService configService)
     : BasePage(driver, configService.GetFullUrlPage(UrlKey))
 {
+    /// <summary>
+    /// The URL key for the Login page.
+    /// </summary>
     private const string UrlKey = "LoginPage";
 
     private IWebElement UsernameField => this.Driver.FindElement(By.Id("user-name"));
@@ -18,11 +21,20 @@ public class LoginPage(IWebDriver driver, IConfigurationService configService)
     private IWebElement ErrorMessageContainer => this.Driver.FindElement(By.CssSelector(".error-message-container h3"));
 
     /// <summary>
+    /// Enters both username and password into their respective fields.
+    /// </summary>
+    public void EnterCredentials(string username, string password)
+    {
+        this.EnterUsername(username);
+        this.EnterPassword(password);
+    }
+
+    /// <summary>
     /// Enters the username into the username field.
     /// </summary>
     public void EnterUsername(string username)
     {
-        this.Log.Debug($"Entering username");
+        this.Log.Info($"Attempting login with user: '{username}'");
 
         this.UsernameField.SendKeys(username);
     }
@@ -32,8 +44,6 @@ public class LoginPage(IWebDriver driver, IConfigurationService configService)
     /// </summary>
     public void EnterPassword(string password)
     {
-        this.Log.Debug("Entering password");
-
         this.PasswordField.SendKeys(password);
     }
 
@@ -42,8 +52,6 @@ public class LoginPage(IWebDriver driver, IConfigurationService configService)
     /// </summary>
     public void ClickLogin()
     {
-        this.Log.Info("Clicking the Login button.");
-
         this.LoginButton.Click();
     }
 
@@ -52,11 +60,7 @@ public class LoginPage(IWebDriver driver, IConfigurationService configService)
     /// </summary>
     public string GetErrorMessage()
     {
-        this.Log.Debug("Retrieving error message text.");
-
-        var errorText = this.ErrorMessageContainer.Text;
-
-        return errorText;
+        return this.ErrorMessageContainer.Text;
     }
 
     /// <summary>
@@ -64,8 +68,7 @@ public class LoginPage(IWebDriver driver, IConfigurationService configService)
     /// </summary>
     public void ClearUsername()
     {
-        this.Log.Debug("Clearing Username field.");
-        this.ClearElement(this.UsernameField);
+        ClearElement(this.UsernameField);
     }
 
     /// <summary>
@@ -73,7 +76,6 @@ public class LoginPage(IWebDriver driver, IConfigurationService configService)
     /// </summary>
     public void ClearPassword()
     {
-        this.Log.Debug("Clearing Password field.");
-        this.ClearElement(this.PasswordField);
+        ClearElement(this.PasswordField);
     }
 }

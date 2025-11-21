@@ -1,6 +1,6 @@
 using OpenQA.Selenium;
+using sauce.Config;
 using OpenQA.Selenium.Support.UI;
-using log4net;
 
 namespace sauce.Pages;
 
@@ -8,41 +8,10 @@ namespace sauce.Pages;
 /// Page object representing the Inventory Page.
 /// </summary>
 /// <param name="driver">The WebDriver instance.</param>
-public class InventoryPage(IWebDriver driver)
+public class InventoryPage(IWebDriver driver, IConfigurationService configService)
+    : BasePage(driver, configService.GetFullUrlPage(UrlKey))
 {
-    /// <summary>
-    /// The URL of the Inventory page.
-    /// </summary>
-    public const string Url = "https://www.saucedemo.com/inventory.html";
-    private readonly IWebDriver _driver = driver;
-    private static readonly ILog _log = LogManager.GetLogger(typeof(LoginPage));
-
-    /// <summary>
-    /// Waits for the Inventory page to fully load.
-    /// </summary>
-    private void WaitForPageToLoad()
-    {
-        _log.Debug("Waiting for the Login page to fully load...");
-
-        var titleWait = new WebDriverWait(this._driver, TimeSpan.FromSeconds(2));
-
-        _ = titleWait.Until(d => d.FindElement(By.XPath("//div[@class='app_logo']")));
-        _log.Debug("Login page elements are visible.");
-    }
-
-    /// <summary>
-    /// Opens the Inventory page.
-    /// </summary>
-    /// <returns>The InventoryPage instance.</returns>
-    public InventoryPage Open()
-    {
-        _log.Info($"Navigating to URL: {Url}");
-
-        this._driver.Navigate().GoToUrl(Url);
-        this.WaitForPageToLoad();
-
-        return this;
-    }
+    private const string UrlKey = "InventoryPage";
 
     /// <summary>
     /// Gets the title of the Inventory page.
@@ -50,13 +19,15 @@ public class InventoryPage(IWebDriver driver)
     /// <returns>The title text.</returns>
     public string GetTitle()
     {
-        _log.Debug("Retrieving Inventory page title.");
+        this.Log.Debug("Waiting for Inventory page title to appear...");
 
-        var title = this._driver.FindElement(By.XPath("//div[@class='app_logo']"));
+        // 2. Create an Explicit Wait
+        var wait = new WebDriverWait(this.Driver, TimeSpan.FromSeconds(10));
 
-        _log.Debug($"Retrieved title: '{title.Text}'");
+        // 3. Wait until the element exists in the DOM and return it
+        var titleElement = wait.Until(d => d.FindElement(By.XPath("//div[@class='app_logo']")));
 
-        return title.Text;
+        this.Log.Debug($"Retrieved title: '{titleElement.Text}'");
+        return titleElement.Text;
     }
 }
-

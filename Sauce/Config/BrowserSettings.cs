@@ -1,4 +1,4 @@
-namespace sauce.Config;
+namespace Sauce.Config;
 
 /// <summary>
 /// Settings for a specific browser.

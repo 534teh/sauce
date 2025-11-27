@@ -1,11 +1,11 @@
 using Microsoft.Extensions.Configuration;
 
-namespace sauce.Config;
+namespace Sauce.Config;
 
 /// <summary>
 /// Utility class to read configuration settings.
 /// </summary>
-public class ConfigurationService : IConfigurationService
+public class ConfigurationService
 {
     /// <summary>
     /// The application configuration root.
@@ -20,7 +20,7 @@ public class ConfigurationService : IConfigurationService
     /// </summary>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public BrowserSettings GetBrowserSettings()
+    public static BrowserSettings GetBrowserSettings()
     {
         return Configuration.GetSection("BrowserSettings").Get<BrowserSettings>()
             ?? throw new InvalidOperationException("Failed to load BrowserSettings from configuration.");
@@ -30,7 +30,7 @@ public class ConfigurationService : IConfigurationService
     /// Gets the full URL for a given page key.
     /// </summary>
     /// <returns></returns>
-    public string GetFullUrlPage(string urlKey)
+    public static string GetFullUrlPage(string urlKey)
     {
         var url = Configuration.GetSection($"UrlSettings:PageUrls:{urlKey}").Value;
         var baseUrl = Configuration.GetSection("UrlSettings:BaseUrl").Value;

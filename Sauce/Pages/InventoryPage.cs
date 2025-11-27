@@ -1,21 +1,21 @@
 using OpenQA.Selenium;
-using sauce.Config;
+using Sauce.Config;
 
-namespace sauce.Pages;
+namespace Sauce.Pages;
 
 /// <summary>
 /// Page object representing the Inventory Page.
 /// </summary>
 /// <param name="driver">The WebDriver instance.</param>
-public class InventoryPage(IWebDriver driver, IConfigurationService configService)
-    : BasePage(driver, configService.GetFullUrlPage(UrlKey))
+public class InventoryPage(IWebDriver driver)
+    : BasePage(driver, ConfigurationService.GetFullUrlPage(UrlKey))
 {
     /// <summary>
     /// The URL key for the Inventory page.
     /// </summary>
     private const string UrlKey = "InventoryPage";
 
-    private IWebElement titleElement => this.Driver.FindElement(By.XPath("//div[@class='app_logo']"));
+    private IWebElement TitleElement => this.Driver.FindElement(By.XPath("//div[@class='app_logo']"));
 
     /// <summary>
     /// Gets the title of the Inventory page.
@@ -23,6 +23,6 @@ public class InventoryPage(IWebDriver driver, IConfigurationService configServic
     /// <returns>The title text.</returns>
     public string GetTitle()
     {
-        return this.titleElement.Text;
+        return this.TitleElement.Text;
     }
 }

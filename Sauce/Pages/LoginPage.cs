@@ -1,14 +1,14 @@
 using OpenQA.Selenium;
-using sauce.Config;
+using Sauce.Config;
 
-namespace sauce.Pages;
+namespace Sauce.Pages;
 
 /// <summary>
 /// Page object representing the Login Page.
 /// </summary>
 /// <param name="driver">The WebDriver instance.</param>
-public class LoginPage(IWebDriver driver, IConfigurationService configService)
-    : BasePage(driver, configService.GetFullUrlPage(UrlKey))
+public class LoginPage(IWebDriver driver)
+    : BasePage(driver, ConfigurationService.GetFullUrlPage(UrlKey))
 {
     /// <summary>
     /// The URL key for the Login page.

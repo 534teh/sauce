@@ -1,23 +1,20 @@
 using OpenQA.Selenium;
 using Reqnroll;
-using sauce.Config;
-using sauce.Pages;
+using Sauce.Pages;
 using Shouldly;
 
-namespace sauce.StepDefinitions;
+namespace Sauce.StepDefinitions;
 
 [Binding]
 public class LoginSteps
 {
     private readonly IWebDriver _driver;
-    private readonly IConfigurationService _configService;
     private readonly LoginPage _loginPage;
 
-    public LoginSteps(IWebDriver driver, IConfigurationService configService)
+    public LoginSteps(IWebDriver driver)
     {
         this._driver = driver;
-        this._configService = configService;
-        this._loginPage = new LoginPage(this._driver, this._configService);
+        this._loginPage = new LoginPage(this._driver);
     }
 
 
@@ -73,7 +70,7 @@ public class LoginSteps
     [Then(@"the page title should be ""(.*)""")]
     public void ThenThePageTitleShouldBe(string expectedTitle)
     {
-        var inventoryPage = new InventoryPage(this._driver, this._configService);
+        var inventoryPage = new InventoryPage(this._driver);
 
         var actualTitle = inventoryPage.GetTitle();
         actualTitle.ShouldBe(expectedTitle);

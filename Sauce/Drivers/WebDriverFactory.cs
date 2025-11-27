@@ -1,12 +1,12 @@
 using OpenQA.Selenium;
-using sauce.Config;
+using Sauce.Config;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Edge;
 
 using System.Collections.Concurrent;
 
-namespace sauce.Drivers;
+namespace Sauce.Drivers;
 
 // <summary>
 /// Factory class to create WebDriver instances based on environment configuration.

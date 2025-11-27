@@ -1,7 +1,7 @@
 using OpenQA.Selenium;
 using log4net;
 
-namespace sauce.Pages;
+namespace Sauce.Pages;
 
 /// <summary>
 /// Base class for all page objects.
